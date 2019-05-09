@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Juego</title>
+    </h:head>
+    <h:body>
+        <h1>Adivina un numero: </h1>
+        Numero a adivinar es: 
+        <h:outputLabel value="#{adivina.numeroAdivinar}" />
+        <hr/>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Introduce un nº :"></h:outputLabel>
+                <h:inputText id="num" value="#{adivina.numero}" required="true">
+                    <!--Añadimos dentro un validador-->
+                    <!--   <f:validateLongRange minimum="1" maximum="20"/>-->
+                    <f:validator  validatorId="miValidador"/>
+
+                </h:inputText>
+                <h:message for="num"/>
+
+                <h:outputLabel value="Introduce una fecha  :"></h:outputLabel>
+                <h:inputText id="fecha" value="#{adivina.fecha}" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy"  />
+                </h:inputText>
+                <h:message for="fecha"/>
+                
+                  <h:outputLabel value="Introduce DNI  :"></h:outputLabel>
+                  <h:inputText id="dni" value="#{adivina.miDni}" required="true">
+                      <f:converter converterId="DNIConversor"  />
+                </h:inputText>
+                <h:message for="dni"/>
+
+                <h:commandButton value="adivinar" action="#{adivina.adivinar()}"/>  <!--commandButton y commandLink son lo mismo-->
+                <h:commandButton value="cancelar" action="pagina o metodo bean" immediate="true"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
